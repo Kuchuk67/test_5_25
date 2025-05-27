@@ -1,0 +1,4 @@
+[flake8]
+exclude = .git, venv, migrations
+ignore = E226,E302,E41,E123
+max-line-length = 170
