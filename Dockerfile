@@ -1,15 +1,16 @@
+# Указываем базовый образ
 FROM python:3.12
+ENV POETRY_VIRTUALENVS_CREATE=false
+ENV PYTHONPATH=/app
+
+# Устанавливаем рабочую директорию в контейнере
 WORKDIR /app
 
-# Устанавливаем Poetry
-RUN pip install poetry==1.7.0
+# Копируем файл с зависимостями и устанавливаем их
+RUN pip install poetry
+COPY ./pyproject.toml ./
+RUN poetry install --no-root
 
-# Копируем зависимости
-COPY pyproject.toml poetry.lock* ./
-
-# Устанавливаем пакеты
-RUN poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi --no-root
 
 # Копируем код
 COPY . .
@@ -17,4 +18,5 @@ COPY . .
 EXPOSE 8000
 
 # Запускаем сервер
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+#CMD ["python", "manage.py", "runserver"]
