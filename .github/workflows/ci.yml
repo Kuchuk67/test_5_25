@@ -14,7 +14,7 @@ jobs:
 
       - name: Copy files to VM
         run: |
-          sshpass -p "ASDqweZXC" 
+          sshpass -p ASDqweZXC 
           ssh -l root 1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
             scp -o docker-compose.yml  ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/tracker/
           EOF
