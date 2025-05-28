@@ -88,9 +88,35 @@ jobs:
 
     steps:
       - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.8.1
+        uses: webfactory/ssh-agent@v0.9.1
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
+
+      - name: Copy files to VM
+        run: |
+          sshpass -p "ASDqweZXC"
+          ssh -l root 1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
+            scp -o docker-compose.yml  ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/tracker/
+          EOF
+      - name: Create .env
+        run: |
+          sshpass -p "ASDqweZXC"
+          ssh -l root 1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
+            cat << 'EOF' > tracker/backend/.env
+            ${{ secrets.ENV }}
+          EOF
+        shell: bash
+
+      - name: Pull to VM
+        run: |
+          ...
+
+      - name: Start docker
+        run: |
+          ...
+          
+          
+          
 
       - name: Deploy to Server
         run: |
