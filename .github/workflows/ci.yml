@@ -18,7 +18,7 @@ jobs:
     - name: SSH CONNECT
       run: |
         ssh -o root@1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
-          # ssh -p 49209 -o StrictHostKeyChecking=no root@root@1117af62369e.vps.myjino.ru << 'EOF'
+          # ssh -p 49209 -o StrictHostKeyChecking=no root@1117af62369e.vps.myjino.ru << 'EOF'
         EOF
 
     - name: Copy files to VM
