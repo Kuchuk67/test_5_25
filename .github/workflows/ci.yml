@@ -18,6 +18,8 @@ jobs:
           sshpass -p ASDqweZXC ssh root@1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
             scp -o docker-compose.yml  ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/tracker/
           EOF
+        shell: bash
+
       - name: Create .env
         run: |
           sudo apt install sshpass
