@@ -5,50 +5,45 @@ on: [push, pull_request]
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      #- name: Set up SSH
-      #  uses: webfactory/ssh-agent@v0.9.1
-      #  with:
-      #    ssh-private-key: ${{ secrets.SSH_KEY }}
-      - name: Check out code
-      - uses: actions/checkout@v3
+    - name: Check out code1
+      uses: actions/checkout@v3
 
-      - name: Copy files to VM
-        run: |
-          sudo apt install sshpass
-          ls
-          sshpass -p 'ASDqweZXC' scp -P 49209  ./docker-compose.yml  root@1117af62369e.vps.myjino.ru:/tracker/
+    - name: Copy files to VM
+      run: |
+        sudo apt install sshpass
+        ls
+        sshpass -p 'ASDqweZXC' scp -P 49209  ./docker-compose.yml  root@1117af62369e.vps.myjino.ru:/tracker/
           
 
-        shell: bash
+      shell: bash
 
-      - name: Create .env
-        run: |
-          sudo apt install sshpass
-          sshpass -p "ASDqweZXC" ssh -t root@1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
-            cat << 'EOF' > tracker/backend/.env
-            ${{ secrets.ENV }}
-          EOF
-        shell: bash
+    - name: Create .env
+      run: |
+        sudo apt install sshpass
+        sshpass -p "ASDqweZXC" ssh -t root@1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
+          cat << 'EOF' > tracker/backend/.env
+          ${{ secrets.ENV }}
+        EOF
+      shell: bash
 
-      - name: Pull to VM
-        run: |
-          ...
+    - name: Pull to VM
+      run: |
+        ...
 
-      - name: Start docker
-        run: |
-          ...
+    - name: Start docker
+      run: |
+        ...
           
           
           
 
-      - name: Deploy to Server
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
-            docker stop myapp || true
-            docker rm myapp || true
-            docker run -d --name myapp -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
-          EOF
+    - name: Deploy to Server
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+          docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
+          docker stop myapp || true
+          docker rm myapp || true
+          docker run -d --name myapp -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
+        EOF
 
