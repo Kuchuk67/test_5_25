@@ -12,8 +12,7 @@ jobs:
     - name: Copy files to VM
       run: |
         sudo apt install sshpass
-        
-        cd tracker
+
         sshpass -p 'ASDqweZXC' scp -P 49209  ./docker-compose.yml  root@1117af62369e.vps.myjino.ru:~/tracker/
           
 
