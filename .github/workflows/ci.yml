@@ -20,8 +20,8 @@ jobs:
           EOF
       - name: Create .env
         run: |
-          sshpass -p "ASDqweZXC"
-          ssh -l root 1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
+          sudo apt install sshpass
+          sshpass -p "ASDqweZXC" ssh -l root 1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
             cat << 'EOF' > tracker/backend/.env
             ${{ secrets.ENV }}
           EOF
