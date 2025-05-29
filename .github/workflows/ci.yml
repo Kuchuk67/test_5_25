@@ -26,21 +26,16 @@ jobs:
         # cd tracker
         ls
         scp -P 49209  docker-compose.yml  root@1117af62369e.vps.myjino.ru:~/tracker/ 
-        # ssh -o StrictHostKeyChecking=no root@1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
-          
-        # EOF
-
-
-        
-          
 
       shell: bash
 
     - name: Create .env
       run: |
         ssh -o StrictHostKeyChecking=no root@1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
-          cat << 'EOF' > tracker/backend/.env
-          ${{ secrets.ENV }}
+          cd tracker
+          ls
+          # cat << 'EOF' > tracker/backend/.env
+          # ${{ secrets.ENV }}
         EOF
       shell: bash
 
