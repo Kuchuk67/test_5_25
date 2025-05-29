@@ -23,7 +23,7 @@ jobs:
 
     - name: Copy files to VM
       run: |
-        cd tracker
+        # cd tracker
         ls
         scp -P 49209  docker-compose.yml  root@1117af62369e.vps.myjino.ru:~/tracker/ 
         # ssh -o StrictHostKeyChecking=no root@1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
