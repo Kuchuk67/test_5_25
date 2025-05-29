@@ -25,7 +25,7 @@ jobs:
       run: |
         # cd tracker
         
-        scp -P 49209 docker-compose.yml root@1117af62369e.vps.myjino.ru:~/tracker/ 
+        scp -P 49209 deploy/docker-compose.yml root@1117af62369e.vps.myjino.ru:~/tracker/ 
         scp -P 49209 nginx.conf root@1117af62369e.vps.myjino.ru:~/tracker/
         scp -P 49209 deploy/Dockerfile root@1117af62369e.vps.myjino.ru:~/tracker/ 
 
@@ -52,10 +52,8 @@ jobs:
           # sudo docker compose -f docker-compose.yml down --remove-orphans && \
 
           sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:04e74c1925eed3fda3bb9f31f24d6c7b882422a9
-          # ${{ github.sha }}  && \
           
           sudo docker run -d --name myapp -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:04e74c1925eed3fda3bb9f31f24d6c7b882422a9
-        # && \
         
           sudo docker compose -f docker-compose.yml up -d --build
         
