@@ -47,7 +47,7 @@ jobs:
 
     - name: error Deploy to Server
       run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "
+        ssh -o StrictHostKeyChecking=no root@1117af62369e.vps.myjino.ru -p 49209 "
           cd tracker && \
           sudo docker system prune -af && \
           sudo docker volume prune -f && \
