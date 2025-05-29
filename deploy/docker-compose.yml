@@ -33,12 +33,12 @@ services:
 
     image: kuchaser/myapp:04e74c1925eed3fda3bb9f31f24d6c7b882422a9
 
-    #build:
-    #  context: .
-    #  dockerfile: ./Dockerfile
+    build:
+      context: .
+      dockerfile: ./Dockerfile
 
     command: >
-      bash -c  "poetry install --no-root python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+      bash -c  "poetry install --no-root && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
 
     volumes:
       - .:/app
