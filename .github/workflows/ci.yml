@@ -23,17 +23,20 @@ jobs:
 
     - name: Copy files to VM
       run: |
-        sudo apt install sshpass
+        ssh -o StrictHostKeyChecking=no root@1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
+          sudo apt install sshpass
+          scp -P 49209  ./docker-compose.yml  root@1117af62369e.vps.myjino.ru:~/tracker/
+        EOF
 
-        sshpass -p 'ASDqweZXC' scp -P 49209  ./docker-compose.yml  root@1117af62369e.vps.myjino.ru:~/tracker/
+
+        
           
 
       shell: bash
 
     - name: Create .env
       run: |
-        sudo apt install sshpass
-        sshpass -p "ASDqweZXC" ssh -t root@1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
+        ssh -o StrictHostKeyChecking=no root@1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
           cat << 'EOF' > tracker/backend/.env
           ${{ secrets.ENV }}
         EOF
