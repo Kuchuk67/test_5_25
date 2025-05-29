@@ -16,7 +16,7 @@ jobs:
         ssh-private-key: ${{ secrets.SSH_KEY }}
 
 
-    - name: SSH CONECT
+    - name: SSH CONNECT
       run: |
         ssh -p 49209 -o StrictHostKeyChecking=no root@root@1117af62369e.vps.myjino.ru << 'EOF'
         EOF
