@@ -16,7 +16,8 @@ jobs:
         run: |
           sudo apt install sshpass
 
-          sshpass -p 'ASDqweZXC' scp -P 49209 -o docker-compose.yml  root@1117af62369e.vps.myjino.ru:/tracker/ 
+          sshpass -p 'ASDqweZXC' scp -P 49209  ./docker-compose.yml  root@1117af62369e.vps.myjino.ru:/tracker/
+          
 
         shell: bash
 
