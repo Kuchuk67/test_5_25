@@ -55,7 +55,8 @@ jobs:
           sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:04e74c1925eed3fda3bb9f31f24d6c7b882422a9
           # ${{ github.sha }}  && \
           
-          sudo docker run -d --name myapp -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}  && \
+          sudo docker run -d --name myapp -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:04e74c1925eed3fda3bb9f31f24d6c7b882422a9
+        # && \
         
           sudo docker compose -f docker-compose.yml up -d --build
         
