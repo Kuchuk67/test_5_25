@@ -26,6 +26,7 @@ jobs:
         # cd tracker
         ls
         scp -P 49209  docker-compose.yml  root@1117af62369e.vps.myjino.ru:~/tracker/ 
+        scp -P 49209 deploy/Dockerfile   root@1117af62369e.vps.myjino.ru:~/tracker/ 
 
       shell: bash
 
@@ -42,7 +43,10 @@ jobs:
 
     - name: Pull to VM
       run: |
-        ...
+        ssh -o StrictHostKeyChecking=no root@1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
+          docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
+        EOF
+        
 
     - name: Start docker
       run: |
@@ -51,12 +55,19 @@ jobs:
           
           
 
-    - name: Deploy to Server
+    - name: error Deploy to Server
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-          docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
-          docker stop myapp || true
-          docker rm myapp || true
-          docker run -d --name myapp -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
+          cd tracker && \
+          sudo docker system prune -af && \
+          sudo docker volume prune -f && \
+          sudo docker compose -f docker-compose.yaml down --remove-orphans && \
+
+          docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}  && \
+          
+          docker run -d --name myapp -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}  && \
+        
+          sudo docker compose -f docker-compose.yaml up -d --build
+        
         EOF
 
