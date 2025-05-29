@@ -39,9 +39,7 @@ jobs:
           echo '${{ secrets.ENV }}' >> .env
         EOF
         
-      
-
-        
+             
          
           
 
