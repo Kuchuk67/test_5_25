@@ -1,5 +1,5 @@
 # Указываем базовый образ
-FROM kuchaser/myapp
+FROM kuchaser/myapp:04e74c1925eed3fda3bb9f31f24d6c7b882422a9
 ENV POETRY_VIRTUALENVS_CREATE=false
 ENV PYTHONPATH=/app
 
