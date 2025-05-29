@@ -34,7 +34,6 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no root@1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
           cd tracker
-          ls
           sudo rm -r .env
           echo '${{ secrets.ENV }}' >> .env
         EOF
@@ -53,7 +52,8 @@ jobs:
           # sudo docker volume prune -f && \
           # sudo docker compose -f docker-compose.yml down --remove-orphans && \
 
-          sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}  && \
+          sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:04e74c1925eed3fda3bb9f31f24d6c7b882422a9
+          # ${{ github.sha }}  && \
           
           sudo docker run -d --name myapp -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}  && \
         
