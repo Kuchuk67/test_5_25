@@ -35,7 +35,7 @@ jobs:
           cd tracker
           ls
           sudo rm -r .env
-          echo "${{ secrets.ENV }}" >> .env
+          echo '${{ secrets.ENV }}' >> .env
         EOF
         
       
