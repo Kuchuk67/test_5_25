@@ -15,7 +15,6 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSH_KEY }}
 
-
     - name: SSH CONNECT
       run: |
         ssh -l root 1117af62369e.vps.myjino.ru -p 49209
