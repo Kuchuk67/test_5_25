@@ -49,9 +49,9 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no root@1117af62369e.vps.myjino.ru -p 49209 "
           cd tracker && \
-          sudo docker system prune -af && \
-          sudo docker volume prune -f && \
-          sudo docker compose -f docker-compose.yml down --remove-orphans && \
+          # sudo docker system prune -af && \
+          # sudo docker volume prune -f && \
+          # sudo docker compose -f docker-compose.yml down --remove-orphans && \
 
           sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}  && \
           
