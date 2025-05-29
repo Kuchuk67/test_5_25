@@ -53,9 +53,9 @@ jobs:
           sudo docker volume prune -f && \
           sudo docker compose -f docker-compose.yaml down --remove-orphans && \
 
-          docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}  && \
+          sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}  && \
           
-          docker run -d --name myapp -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}  && \
+          sudo docker run -d --name myapp -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}  && \
         
           sudo docker compose -f docker-compose.yaml up -d --build
         
