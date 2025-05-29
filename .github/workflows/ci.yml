@@ -24,7 +24,7 @@ jobs:
     - name: Copy files to VM
       run: |
         ssh -o StrictHostKeyChecking=no root@1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
-          sudo apt install sshpass
+          ls
           scp -P 49209  ./docker-compose.yml  root@1117af62369e.vps.myjino.ru:~/tracker/
         EOF
 
