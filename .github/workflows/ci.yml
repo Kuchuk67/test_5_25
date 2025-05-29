@@ -37,7 +37,7 @@ jobs:
           # cat << 'EOF' > tracker/backend/.env
           # ${{ secrets.ENV }}
         EOF
-      shell: bash
+      
 
     - name: Pull to VM
       run: |
