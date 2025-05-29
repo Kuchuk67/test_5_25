@@ -28,6 +28,8 @@ jobs:
         scp -P 49209 deploy/docker-compose.yml root@1117af62369e.vps.myjino.ru:~/tracker/ 
         scp -P 49209 nginx.conf root@1117af62369e.vps.myjino.ru:~/tracker/
         scp -P 49209 deploy/Dockerfile root@1117af62369e.vps.myjino.ru:~/tracker/ 
+        
+        scp -P 49209 pyproject.toml root@1117af62369e.vps.myjino.ru:~/tracker/ 
 
       shell: bash
 

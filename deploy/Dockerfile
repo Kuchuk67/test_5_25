@@ -6,14 +6,16 @@ ENV PYTHONPATH=/app
 # Устанавливаем рабочую директорию в контейнере
 WORKDIR /app
 
+# Копируем код
+COPY . .
+
 # Копируем файл с зависимостями и устанавливаем их
 RUN pip install poetry
 # COPY ./pyproject.toml ./
-RUN poetry install --no-root
+RUN tracker/poetry install --no-root
 
 
-# Копируем код
-#COPY . .
+
 
 EXPOSE 8000
 
