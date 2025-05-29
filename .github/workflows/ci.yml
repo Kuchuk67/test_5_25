@@ -15,9 +15,9 @@ jobs:
       - name: Copy files to VM
         run: |
           sudo apt install sshpass
-          sshpass -p ASDqweZXC ssh -t -l root 1117af62369e.vps.myjino.ru -p 49209 << 'EOF'
-            scp -o docker-compose.yml  ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/tracker/
-          EOF
+          sshpass -p ASDqweZXC ssh -t -l root 1117af62369e.vps.myjino.ru -p 49209
+          # scp -o docker-compose.yml  ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/tracker/
+
       - name: Create .env
         run: |
           sudo apt install sshpass
