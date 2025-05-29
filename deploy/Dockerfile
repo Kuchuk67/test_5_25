@@ -8,12 +8,12 @@ WORKDIR /app
 
 # Копируем файл с зависимостями и устанавливаем их
 RUN pip install poetry
-COPY ./pyproject.toml ./
+# COPY ./pyproject.toml ./
 RUN poetry install --no-root
 
 
 # Копируем код
-COPY . .
+#COPY . .
 
 EXPOSE 8000
 
